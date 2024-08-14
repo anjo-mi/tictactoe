@@ -29,37 +29,36 @@ squares = Array.from(squares)
 
 console.log(squares)
 
-squares.forEach(square => {
+squares.forEach((square, index) => {
     square.addEventListener('click', (ev) =>{
-
+        ev.preventDefault()
+        game.setValue(index)
     })
 })
 
 
 class Spot{
-    constructor(val,turn){
+    constructor(val){
         this._val = val
-        this._turn = turn
-    }
-    get val(){
-        return this._val
-    }
-
-    get turn(){
-        return this._turn
-    }
-
-
-    display(sq, turn){
-        const spot = new Spot(sq, turn)
-        // if spot has htmlclass 1,2,3,...?
-        // that html class' text content = 0
-        // call checkwin with the newly created this
+        this._index
+        this[0]
+        this[1]
+        this[2]
+        this[3]
+        this[4]
+        this[5]
+        this[6]
+        this[7]
+        this[8]
     }
 
-    update(val, turn){
-        // if this turn is x, now its o
-        // or if this turn is o, now its x
+
+
+
+    setVal(index){
+        this[index] = this._val
+        this.checkWin(this._val, index)
+
 
     }
 
