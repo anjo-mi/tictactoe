@@ -1,72 +1,49 @@
-// create an object with 9 properties, numbered 1-9
-//    and a this.val of x or o buttons click
-
-// create an array from the squares
-
-// call the method on the object using the index it matches from the array to update the this.value of the property on the object
-
-// call the method on the object to update the text content of the square that was clicked on to this.value
-
-// update the value to be changed from x -> o or vice cersa
 
 
-
-
-
-
-
-
-
-
-
-document.getElementById('x').addEventListener
-
-
-
-let squares= document.querySelectorAll('.square')
-
-squares = Array.from(squares)
-
-console.log(squares)
-
-squares.forEach((square, index) => {
-    square.addEventListener('click', (ev) =>{
-        ev.preventDefault()
-        game.setValue(index)
-    })
-})
-
-
-class Spot{
-    constructor(val){
-        this._val = val
-        this._index
-        this[0]
-        this[1]
-        this[2]
-        this[3]
-        this[4]
-        this[5]
-        this[6]
-        this[7]
-        this[8]
+class TicTacToe{
+    constructor(){
+        this.board = Array(9).fill(null)
+        this.userPlayer = 'X'
+        this.bot = 'O'
     }
 
-
-
-
-    setVal(index){
-        this[index] = this._val
-        this.checkWin(this._val, index)
-
-
+    markSport(position){
+        if (this.board[position] === null){
+            this.board[position] = this.userPlayer
+            if (!this.checkWin()){
+                this.botsTurn()
+            }
+            return true
+        }
+        return false
     }
 
-    checkWin(val, turn){
-        // if this.val === (this.val[i + 1] && this.val === (this.val[i + 2] || this.val[i - 1])) || (this.val === this.val[i-1] && this.val === this.val - 2)
-        // if this.val === (this.val[i + 3] && this.val === (this.val[i + 6] || this.val[i - 3])) || (this.val === this.val[i-3] && this.val === this.val - 6)
-        // call win with thisvalue
-        // else call update with this.val and this.turn
+    botsTurn(){
+        let availMoves = this.board.reduce((a, el, i) => {
+            if (el === null) a.push(i)
+            return a
+        }, [])
+        if (availMoves.length > 0){
+            let random = availMoves[Math.floor(Math.random() * availMoves.length)]
+            this.board[random] = this.bot
+        }
+    }
+    checkWin(){
+        const combosToWin = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]
+
+        for (let combo of combosToWin){
+            const [a,b,c] = combo
+            if (this.board[a] && 
+                this.board[a] === this.board[b] && 
+                this.board[a] === this.board[c]){
+                    return this.board[a]
+                }
+        }
+        return this.board.includes(null) ? null : 'draw'
+    }
+
+    reset(){
+        this.board = Array(9).fill(null)
+        this.userPlayer = 'X'
     }
 }
-
