@@ -46,6 +46,8 @@ class TicTacToe{
 
     reset(){
         this.board = Array(9).fill(null)
+        this.userPlayer = 'X'
+        this.bot = 'O'
     }
 }
 
@@ -63,12 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
         game.userPlayer = mark
         game.bot = mark === 'X' ? 'O' : 'X'
         topSection.computedStyleMap.display = 'none'
-        setBoard()
+    }  
+    
+    function addEvListenersAtTop(){
+        xButton.addEventListener('click', () => startGame('X'))
+        oButton.addEventListener('click', () => startGame('O'))
     }
+
+    addEvListenersAtTop()
+
+
 
     function setBoard(){
         squares.forEach((sq, i) => {
             sq.textContent = ''
+            sq.makeMove = () => makeAMove(i)
             sq.addEventListener('click', () => makeAMove(i))
         })
     }
@@ -105,9 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function restartGame(){
         game.reset()
         topSection.style.display = 'flex'
-        setBoard()
+        squares.forEach(sq => {
+            sq.textContent = ''
+            sq.removeEventListener('click', sq.makeMove)
+        })
+        xButton.addEventListener('click', () => startGame('X'))
+        oButton.addEventListener('click', () => startGame('O'))
     }
 })
+
 
 // create new obj using class, get all occurrences of a square, get buttons by their id's, set variable equal to selection section
 // put evLis on both buttons
