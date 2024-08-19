@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function startGame(mark){
         game.userPlayer = mark
         game.bot = mark === 'X' ? 'O' : 'X'
-        topSection.computedStyleMap.display = 'none'
+        topSection.style.display = 'none'
+        setBoard()
     }  
     
     function addEvListenersAtTop(){
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squares.forEach((sq, i) => {
             sq.textContent = ''
             sq.makeMove = () => makeAMove(i)
-            sq.addEventListener('click', () => makeAMove(i))
+            sq.addEventListener('click', () => sq.makeAMove)
         })
     }
 
@@ -120,8 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sq.textContent = ''
             sq.removeEventListener('click', sq.makeMove)
         })
-        xButton.addEventListener('click', () => startGame('X'))
-        oButton.addEventListener('click', () => startGame('O'))
     }
 })
 
