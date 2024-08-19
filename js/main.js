@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setBoard()
     }  
     
-    function addEvListenersAtTop(){
-        xButton.addEventListener('click', () => startGame('X'))
-        oButton.addEventListener('click', () => startGame('O'))
-    }
+    // function addEvListenersAtTop(){
+        // xButton.addEventListener('click', () => startGame('X'))
+        // oButton.addEventListener('click', () => startGame('O'))
+    // }
 
-    addEvListenersAtTop()
+    // addEvListenersAtTop()
 
 
 
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squares.forEach((sq, i) => {
             sq.textContent = ''
             sq.makeMove = () => makeAMove(i)
-            sq.addEventListener('click', () => sq.makeAMove)
+            sq.addEventListener('click', sq.makeMove)
         })
     }
 
@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sq.textContent = ''
             sq.removeEventListener('click', sq.makeMove)
         })
+        setBoard()
     }
 })
 
