@@ -5,6 +5,7 @@ class TicTacToe{
         this.board = Array(9).fill(null)
         this.userPlayer = 'X'
         this.bot = 'O'
+        // create empty board, assign player marks
     }
 
     markSport(position){
@@ -16,6 +17,7 @@ class TicTacToe{
             return true
         }
         return false
+        // call with ev Lis and if .markSpot {} ?
     }
 
     botsTurn(){
@@ -27,6 +29,7 @@ class TicTacToe{
             let random = availMoves[Math.floor(Math.random() * availMoves.length)]
             this.board[random] = this.bot
         }
+        this.checkWin()
     }
     checkWin(){
         const combosToWin = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]
