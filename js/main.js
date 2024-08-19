@@ -5,10 +5,9 @@ class TicTacToe{
         this.board = Array(9).fill(null)
         this.userPlayer = 'X'
         this.bot = 'O'
-        // create empty board, assign player marks
     }
 
-    markSport(position){
+    markSpot(position){
         if (this.board[position] === null){
             this.board[position] = this.userPlayer
             if (!this.checkWin()){
@@ -17,7 +16,6 @@ class TicTacToe{
             return true
         }
         return false
-        // call with ev Lis and if .markSpot {} ?
     }
 
     botsTurn(){
@@ -28,8 +26,9 @@ class TicTacToe{
         if (availMoves.length > 0){
             let random = availMoves[Math.floor(Math.random() * availMoves.length)]
             this.board[random] = this.bot
+            return this.checkWin()
         }
-        this.checkWin()
+        return null
     }
     checkWin(){
         const combosToWin = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]
@@ -47,6 +46,17 @@ class TicTacToe{
 
     reset(){
         this.board = Array(9).fill(null)
-        this.userPlayer = 'X'
     }
 }
+
+// create new obj using class, get all occurrences of a square, get buttons by their id's, set variable equal to selection section
+// put evLis on both buttons
+
+
+// let player choose mark, set selection to obj's usermark and alternative to bots mark, set up board
+
+// add ev Lis to all squares- clear any remaining marks and telling it to make a move for the specific index(as an argument), (use forEach w index to track which square is pressed)
+
+// take index as param, use that to call the game's markspot method, if its true update the board and check the status of the game
+
+// update the board using the games board array
