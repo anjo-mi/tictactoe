@@ -49,6 +49,66 @@ class TicTacToe{
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const game = new TicTacToe()
+    const squares = document.querySelectorAll('.square')
+    const xButton = document.getElementById('x')
+    const oButton = document.getElementById('o')
+    const topSection = document.querySelector('.first')
+
+    xButton.addEventListener('click', () => startGame('X'))
+    oButton.addEventListener('click', () => startGame('O'))
+
+    function startGame(mark){
+        game.userPlayer = mark
+        game.bot = mark === 'X' ? 'O' : 'X'
+        topSection.computedStyleMap.display = 'none'
+        setBoard()
+    }
+
+    function setBoard(){
+        squares.forEach((sq, i) => {
+            sq.textContent = ''
+            sq.addEventListener('click', () => makeAMove(i))
+        })
+    }
+
+    function makeAMove(i){
+        if (game.markSpot(i)){
+            changeSquare()
+            checkIfOver()
+        }
+    }
+
+    function changeSquare(){
+        game.board.forEach((el, i) => {
+            squares[i].textContent = el || ''
+        })
+    }
+
+    function checkIfOver(){
+        const result = game.checkWin()
+        if (result){
+            setTimeout(() => {
+                if (result === 'draw'){
+                    // create a box for this (or remove hidden class?)
+                    console.log('its a draw')
+                }else{
+                    // create a box for this (or remove hidden class?)
+                    console.log(`${result} wins`)
+                }
+                restartGame() // include w box from above?
+            }, 400)
+        }
+    }
+
+    function restartGame(){
+        game.reset()
+        topSection.style.display = 'flex'
+        setBoard()
+    }
+})
+
 // create new obj using class, get all occurrences of a square, get buttons by their id's, set variable equal to selection section
 // put evLis on both buttons
 
