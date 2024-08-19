@@ -103,13 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (result){
             setTimeout(() => {
                 if (result === 'draw'){
-                    // create a box for this (or remove hidden class?)
                     console.log('its a draw')
                 }else{
-                    // create a box for this (or remove hidden class?)
                     console.log(`${result} wins`)
                 }
-                restartGame() // include w box from above?
+                restartGame()
             }, 400)
         }
     }
@@ -124,15 +122,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-
-// create new obj using class, get all occurrences of a square, get buttons by their id's, set variable equal to selection section
-// put evLis on both buttons
-
-
-// let player choose mark, set selection to obj's usermark and alternative to bots mark, set up board
-
-// add ev Lis to all squares- clear any remaining marks and telling it to make a move for the specific index(as an argument), (use forEach w index to track which square is pressed)
-
-// take index as param, use that to call the game's markspot method, if its true update the board and check the status of the game
-
-// update the board using the games board array
